@@ -9,17 +9,13 @@ log "delimimeters: " & AppleScript's text item delimiters
 set myItems to text items of myText
 log "myItems: " & (count of myItems) & " items, which are:" & linefeed & myItems
 
-set AppleScript's text item delimiters to {" ", "-"}
-log "delimimeters: " & AppleScript's text item delimiters
-set myRegex to "(\\d{2}-\\w{3}-\\d{2}) (\\d{2}:\\d{2})"
-log "myRegex: " & myRegex
-
-set mySubitems to text items of myItems
-log "mySubitems: " & (count of mySubitems) & " items, which are:" & linefeed & mySubitems
+set AppleScript's text item delimiters to "" --reset, no longer needed
 
 set myDates to {}
 repeat with myItem in myItems
-	set myMatch to item 1 of myItem
+	set myMatch to item 1 of myItems as string
+	log "myMatch: " & linefeed & myMatch
+	
 	--set myMatch to (myItem as string) = myRegex
 	set colonPosition to offset of ":" in myMatch
 	set thisDate to {text (colonPosition - 12) thru (colonPosition + 2) of myMatch}
