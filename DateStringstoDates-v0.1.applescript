@@ -2,13 +2,14 @@
 # DateStringstoDates
 #
 # Created by Toby Ziegler, March 26 2023
-# Last updated by Toby on March 26 2023
+# Last updated by Toby on March 27 2023
 #
+# Designating this script as version 0.1
 #
 # This AppleScript was originally intended as a simple scratch script:
 # Figure out how to convert some strings into dates.
 #
-# It ended up feeling like something worth keeping around.
+# It ended up feeling like another something worth keeping around.
 #
 # Not sure about it yet. It works, but feels clumsy.
 # Also, it only works on the exactly formatted input.
