@@ -8,10 +8,10 @@
 # Last updated by Toby on March 29, 2023
 #
 #
-# Designating this script as version 0.8
+# Designating this script as version 0.9.1
 #
 --current version message:
---first fully functional version!
+-- ???
 #
 --still need drag and drop functionality
 --still need compression check
@@ -80,7 +80,7 @@ on extractDates(rawList)
 	set AppleScript's text item delimiters to theDelimiters --reset delimiters, no longer needed
 	
 	
-	set permFlags to {"-", "r", "w"} --if another line begins r or w, error?
+	set permFlags to {"-", "d", "r", "w"} --if another line begins d, r, or w, will it error? All data so far starts with "A", "Z", and a number on the last line.
 	set rescueDates to {}
 	
 	repeat with x from 1 to the count of cutList
@@ -168,6 +168,8 @@ end dateSort
 
 on changeDate(theFile, fixDate)
 	
+	set fixDate to fixDate + 30 --the archive should be dated/made after all other contents
+	
 	--arrives as a date: Monday, February 6, 2023 at 11:15:41 AM
 	--need converted to yyyymmddhhmm (.ss?)
 	
@@ -204,7 +206,7 @@ end changeDate
 
 on confirm(theSource)
 	
-	--run shell command "stat" to confirm final system dates
+	--run shell command "stat" to obtain system dates
 	set theCheckScript to "stat -f 'Access (atime): %Sa%nModify (mtime): %Sm%nChange (ctime): %Sc%nBirth  (Btime): %SB' " & the quoted form of the POSIX path of theSource
 	
 	set theConfirmation to do shell script theCheckScript
